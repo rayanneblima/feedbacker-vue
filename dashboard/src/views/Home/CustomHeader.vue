@@ -13,6 +13,7 @@
             Crie uma conta
           </button>
           <button
+            @click="() => emit('login')"
             class="px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
             Entrar
@@ -22,7 +23,7 @@
 
       <div class="flex flex-col mt-28">
         <h1 class="text-4xl font-black text-white">
-          Tenha um feedback. <br>
+          Tenha um <i>feedbacker</i> <br>
           E faça seus clientes mais <br class="hidden lg:inline-block">
           felizes!
         </h1>
@@ -44,7 +45,11 @@
 
 <script>
 export default {
-
+  setup (_, { emit }) {
+    return {
+      emit
+    }
+  }
 }
 </script>
 
