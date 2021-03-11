@@ -1,4 +1,4 @@
-export function validateEmptyAndLenght3 (value) {
+export function validateEmptyAndLength3 (value) {
   if (!value) {
     return '*Este campo é obrigatório!'
   }

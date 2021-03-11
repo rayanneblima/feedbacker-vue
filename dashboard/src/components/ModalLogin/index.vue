@@ -73,7 +73,7 @@ import { useField } from 'vee-validate'
 import { useToast } from 'vue-toastification'
 import useModal from '../../hooks/useModal'
 import Icon from '../Icons'
-import { validateEmptyAndLenght3, validateEmptyAndEmail } from '../../utils/validators'
+import { validateEmptyAndLength3, validateEmptyAndEmail } from '../../utils/validators'
 import services from '../../services'
 
 export default {
@@ -87,12 +87,10 @@ export default {
       value: emailValue,
       errorMessage: emailErrorMessage
     } = useField('email', validateEmptyAndEmail)
-
     const {
       value: passwordValue,
       errorMessage: passwordErrorMessage
-    } = useField('password', validateEmptyAndLenght3)
-
+    } = useField('password', validateEmptyAndLength3)
     const state = reactive({
       hasErrors: false,
       isLoading: false,
@@ -114,32 +112,27 @@ export default {
           email: state.email.value,
           password: state.password.value
         })
-
         if (!errors) {
-          state.isLoading = false
           window.localStorage.setItem('token', data.token)
           router.push({ name: 'Feedbacks' })
+          state.isLoading = false
           modal.close()
           return
         }
-
         if (errors.status === 404) {
-          toast.error('E-mail não encontrado.')
+          toast.error('E-mail não encontrado')
         }
-
         if (errors.status === 401) {
-          toast.error('E-mail/senha inválidos.')
+          toast.error('E-mail/senha inválidos')
         }
-
         if (errors.status === 400) {
-          toast.error('Ocorreu um erro ao fazer o login.')
+          toast.error('Ocorreu um erro ao fazer o login')
         }
-
         state.isLoading = false
       } catch (error) {
         state.isLoading = false
         state.hasErrors = !!error
-        toast.error('Ocorreu um erro ao fazer o login.')
+        toast.error('Ocorreu um erro ao fazer o login')
       }
     }
 

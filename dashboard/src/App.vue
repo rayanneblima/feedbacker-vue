@@ -25,7 +25,7 @@ export default {
           return
         }
 
-        const { data } = await services.use.getMe()
+        const { data } = await services.users.getMe()
         setCurrentUser(data)
       }
     })

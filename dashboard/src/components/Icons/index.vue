@@ -1,12 +1,13 @@
 <template>
-  <component :is="name" v-bind="$props" />
+  <component :is="name" v-bind="$props"/>
 </template>
 
 <script>
-import loading from './loading.vue'
+import Loading from './Loading'
+import Copy from './Copy'
 
 export default {
-  components: { loading },
+  components: { Loading, Copy },
   props: {
     name: { type: String, required: true }
   }

@@ -91,7 +91,7 @@ import { useField } from 'vee-validate'
 import { useToast } from 'vue-toastification'
 import useModal from '../../hooks/useModal'
 import Icon from '../Icons'
-import { validateEmptyAndLenght3, validateEmptyAndEmail } from '../../utils/validators'
+import { validateEmptyAndLength3, validateEmptyAndEmail } from '../../utils/validators'
 import services from '../../services'
 
 export default {
@@ -104,7 +104,7 @@ export default {
     const {
       value: nameValue,
       errorMessage: nameErrorMessage
-    } = useField('password', validateEmptyAndLenght3)
+    } = useField('password', validateEmptyAndLength3)
 
     const {
       value: emailValue,
@@ -114,7 +114,7 @@ export default {
     const {
       value: passwordValue,
       errorMessage: passwordErrorMessage
-    } = useField('password', validateEmptyAndLenght3)
+    } = useField('password', validateEmptyAndLength3)
 
     const state = reactive({
       hasErrors: false,
