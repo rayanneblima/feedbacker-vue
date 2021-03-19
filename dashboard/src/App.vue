@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import { useRoute, useRouter } from 'vue-router'
 import { watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import ModalFactory from './components/ModalFactory'
 import services from './services'
 import { setCurrentUser } from './store/user'

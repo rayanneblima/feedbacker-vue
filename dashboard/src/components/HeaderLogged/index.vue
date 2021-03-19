@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import useStore from '../../hooks/useStore'
 import { cleanCurrentUser } from '../../store/user'
 
