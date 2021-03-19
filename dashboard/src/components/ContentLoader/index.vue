@@ -65,7 +65,7 @@ export default {
   bottom: 0;
   left: 0;
   transform: translateX(-100%);
-  background-image: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-image: linear-gradient(to right, #eeeeee 9%, #dddddd 18%, #eeeeee 33%);
   background-position: 0 0;
   background-size: 1000 100;
   animation: shimmer infinite alternate ease-in-out;
