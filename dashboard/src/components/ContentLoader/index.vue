@@ -13,6 +13,7 @@
 
 <script>
 import { computed } from 'vue'
+
 export default {
   props: {
     maxWidth: {
@@ -45,29 +46,28 @@ export default {
   }
 }
 </script>
-<style lang="postcss" scoped>
+<style lang="postcss">
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
   }
 }
 .content-loader {
-  background: #f6f7f8;
-  overflow: hidden;
   position: relative;
   vertical-align: middle;
+  overflow: hidden;
+  background: #f6f7f8;
 }
 .content-loader--fx {
-  animation: shimmer infinite alternate ease-in-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
   background-image: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-position: 0 0;
   background-size: 1000 100;
-
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  transform: translateX(-100%);
+  animation: shimmer infinite alternate ease-in-out;
 }
 </style>

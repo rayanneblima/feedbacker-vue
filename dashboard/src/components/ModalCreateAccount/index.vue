@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between">
     <h1 class="text-4xl font-black text-gray-800">
-      Cria uma conta
+      Criar uma conta
     </h1>
 
     <button

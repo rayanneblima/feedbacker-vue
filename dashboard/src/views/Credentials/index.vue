@@ -37,7 +37,7 @@
           <icon
             @click="handleCopy"
             name="copy"
-            :color="brandColors.graydark"
+            :color="state.color"
             size="24"
             class="cursor-pointer"
           />
@@ -89,6 +89,7 @@ export default {
     const store = useStore()
     const toast = useToast()
     const state = reactive({
+      color: palette.brand.graydark,
       hasError: false,
       isLoading: false
     })
@@ -121,6 +122,10 @@ export default {
       try {
         await navigator.clipboard.writeText(store.User.currentUser.apiKey)
         toast.success('Copiado!')
+        state.color = palette.brand.main
+        setTimeout(() => {
+          state.color = palette.brand.graydark
+        }, 6000)
       } catch (error) {
         handleError(error)
       }
