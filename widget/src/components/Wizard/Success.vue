@@ -1,8 +1,13 @@
 <template>
   <div class="flex flex-col items-center justify-between w-full my-5">
-    <icon name="check" :color="palette.success" size="70" />
+    <icon
+      name="check"
+      :color="palette.success"
+      size="70"
+    />
+
     <p class="text-xl font-black text-center w-full mt-2">
-      Agradecemos o seu feedback.
+      Agradecemos pelo seu feedback.
     </p>
 
     <div class="flex justify-center items-center w-full mt-2">
@@ -13,6 +18,7 @@
         Envie mais feedbacks
       </button>
     </div>
+
   </div>
 </template>
 

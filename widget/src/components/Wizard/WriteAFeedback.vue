@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-import { computed, ComputedRef, defineComponent, reactive } from 'vue'
+import { ComputedRef, computed, defineComponent, reactive } from 'vue'
 import useNavigation from '../../hooks/navigation'
+import { setCurrentPage, setFingerprint, setMessage, setApiKey } from '../../store'
 import Icon from '../Icon/index.vue'
 import useStore from '../../hooks/store'
-import { setMessage } from '../../store'
 import services from '../../services'
 
 type State = {
@@ -38,22 +38,22 @@ type State = {
 
 interface SetupReturn {
   state: State;
+  submitAFeedback(): Promise<void>;
   submitButtonIsDisabled: ComputedRef<boolean>;
-  submitAFeedback(): Promise<void>
 }
 
 export default defineComponent({
   components: { Icon },
   setup (): SetupReturn {
     const store = useStore()
-    const { setErrorState, setSuccessState } = useNavigation()
-    const state = reactive({
+    const { setSuccessState, setErrorState } = useNavigation()
+    const state = reactive<State>({
       feedback: '',
       isLoading: false,
       hasError: null
     })
 
-    const submitButtonIsDisabled = computed(() => {
+    const submitButtonIsDisabled = computed<boolean>(() => {
       return !state.feedback.length
     })
 
@@ -66,6 +66,7 @@ export default defineComponent({
     async function submitAFeedback (): Promise<void> {
       setMessage(state.feedback)
       state.isLoading = true
+
       try {
         const response = await services.feedbacks.create({
           type: store.feedbackType,
@@ -81,6 +82,8 @@ export default defineComponent({
         } else {
           setErrorState()
         }
+
+        state.isLoading = false
       } catch (error) {
         handleError(error)
       }
@@ -88,8 +91,8 @@ export default defineComponent({
 
     return {
       state,
-      submitButtonIsDisabled,
-      submitAFeedback
+      submitAFeedback,
+      submitButtonIsDisabled
     }
   }
 })
