@@ -9,6 +9,7 @@
     >
       <button
         v-if="canShowAdditionalControlAndInfo"
+        @click="back"
         :disabled="canGoBack"
         :class="{ invisible: canGoBack }"
         class="text-xl text-gray-800 focus:outline-none"
@@ -31,6 +32,8 @@
       </button>
     </div>
 
+    <wizard />
+
     <div
       v-if="canShowAdditionalControlAndInfo"
       class="text-gray-800 text-sm flex"
@@ -48,9 +51,12 @@ import { brand } from '../../../palette'
 import colors from 'tailwindcss/colors'
 import useStore from '../../hooks/store'
 import Icon from '../../components/Icon/index.vue'
+import Wizard from '../../components/Wizard/index.vue'
+import useNavigation, { Navigation } from '../../hooks/navigation'
 
 interface SetupReturn {
   emit: SetupContext['emit'];
+  back: Navigation['back'];
   colors: Record<string, string>;
   brandColors: Record<string, string>;
   label: ComputedRef<string>;
@@ -60,9 +66,10 @@ interface SetupReturn {
 
 export default defineComponent({
   emits: ['close-box'],
-  components: { Icon },
+  components: { Icon, Wizard },
   setup (_, { emit }: SetupContext): SetupReturn {
     const store = useStore()
+    const { back } = useNavigation()
 
     const label = computed<string>(() => {
       if (store.feedbackType === 'ISSUE') {
@@ -90,6 +97,7 @@ export default defineComponent({
 
     return {
       emit,
+      back,
       colors,
       brandColors: brand,
       label,
